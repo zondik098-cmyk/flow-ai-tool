@@ -7,7 +7,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  avatar?: string;
+  avatar?: string | undefined;
   createdAt: string;
   preferences: {
     theme: "light" | "dark";
@@ -44,15 +44,15 @@ export interface Meeting {
   id: string;
   title: string;
   date: string;
-  time?: string;
+  time?: string | undefined;
   participants: string[];
-  notes?: string;
-  summary?: string;
-  keyPoints?: string[];
-  decisions?: string[];
-  actionItems?: ActionItem[];
-  followUps?: string[];
-  status?: "upcoming" | "completed";
+  notes?: string | undefined;
+  summary?: string | undefined;
+  keyPoints?: string[] | undefined;
+  decisions?: string[] | undefined;
+  actionItems?: ActionItem[] | undefined;
+  followUps?: string[] | undefined;
+  status?: "upcoming" | "completed" | undefined;
 }
 
 export interface Task {
@@ -65,7 +65,7 @@ export interface Task {
   assignee: string;
   tags: string[];
   createdAt: string;
-  completedAt?: string;
+  completedAt?: string | undefined;
 }
 
 export type ActivityType =
