@@ -97,7 +97,7 @@ export async function summarizeMeeting(input: {
     .filter((l) => l.length > 8);
 
   const people = input.participants.length ? input.participants : ["Unassigned"];
-  const pick = (i: number) => people[i % people.length];
+  const pick = (i: number) => people[i % people.length] ?? "Unassigned";
   const dueIn = (days: number) =>
     new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
 
@@ -129,7 +129,7 @@ export async function summarizeMeeting(input: {
           task: l.replace(/\s+/g, " ").slice(0, 110),
           assignee: pick(i),
           dueDate: dueIn((i + 1) * 2),
-          priority: priorities[i % priorities.length],
+          priority: priorities[i % priorities.length] ?? "medium",
         }))
       : [
           {
@@ -164,7 +164,7 @@ export async function planTasks(goal: string) {
     id: uid(),
     title,
     description: `Auto-generated step ${i + 1} of the plan for "${g}".`,
-    priority: priorities[i],
+    priority: priorities[i] ?? "medium",
     dueDate: new Date(Date.now() + (i + 2) * 86400000).toISOString().slice(0, 10),
   }));
 }
